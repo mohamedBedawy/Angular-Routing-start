@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
+
+      <!-- this also work if you call child -->
+      <!-- [routerLink]="[user.id,user.name]" -->
+
       <a
        [routerLink]="['/users',user.id,user.name]"
         class="list-group-item"
@@ -10,7 +14,9 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-user></app-user>
+    <!-- <app-user></app-user> -->
+    <router-outlet></router-outlet>
+
   </div>
 </div>
 

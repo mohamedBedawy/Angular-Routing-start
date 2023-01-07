@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -8,12 +9,29 @@ import { ServersService } from '../servers.service';
   styleUrls: ['./server.component.css']
 })
 export class ServerComponent implements OnInit {
-  server: {id: number, name: string, status: string};
+  server: { id: number, name: string, status: string };
+  isAllowEdit: boolean;
 
-  constructor(private serversService: ServersService) { }
+  constructor(private serversService: ServersService
+    , private router: Router
+    , private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.server = this.serversService.getServer(1);
+    this.route.queryParams.subscribe((Param) => {
+      debugger
+      this.isAllowEdit = Param['allowEdit'] === '1';
+      if (this.isAllowEdit) {
+      }
+      else {
+        this.isAllowEdit = false;
+      }
+
+    });
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], { relativeTo: this.route ,queryParamsHandling:'merge'})
+  }
 }

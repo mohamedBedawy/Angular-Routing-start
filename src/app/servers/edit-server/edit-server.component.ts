@@ -16,22 +16,26 @@ export class EditServerComponent implements OnInit {
 
   QuerySubscription: Subscription
   serverId!: number | null;
-
+  isAllowEdit = false;
   constructor(private serversService: ServersService
     , private router: Router
     , private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let serverId = this.route.snapshot.queryParams['allowEdit']
+    let serverId = this.route.snapshot.params['id']
     this.serverId = Number.parseInt(serverId);
     if (Number.isNaN(this.serverId)) {
       console.log(this.route.snapshot.queryParams, this.serverId); this.serverId = 1
     }
-    let fragment = this.route.snapshot.fragment
-    this.loadServer();
     this.route.queryParams.subscribe((Param) => {
-      this.serverId = Number.parseInt(Param['allowEdit'])
-      this.loadServer();
+      this.isAllowEdit =Param['allowEdit']==='1';
+      if (this.isAllowEdit) {
+        this.loadServer();
+      }
+      else{
+        alert("Not allowed to Edit")
+      }
+     
     });
 
   }
