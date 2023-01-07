@@ -18,7 +18,8 @@ const appRoutes:Routes=[
 {path:'',component:HomeComponent},// localhost:4200/users
 {path:'users',component:UsersComponent},
 {path:'users/:id/:name',component:UserComponent}, //id with colon literally meaning id
-{path:'servers',component:ServersComponent}
+{path:'servers',component:ServersComponent},
+{path:'servers/:id/edit',component:EditServerComponent},
 ]
 @NgModule({
   declarations: [

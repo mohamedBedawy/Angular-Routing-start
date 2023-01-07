@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   OnLoadServers(){
     // complex complication
-      this.router.navigate(['/Servers'])
+      this.router.navigate(['/servers',2,'edit'],{queryParams:{allowEdit:1},fragment:'loading'})
   }
 
 }
