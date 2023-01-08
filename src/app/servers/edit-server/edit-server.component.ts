@@ -17,6 +17,7 @@ export class EditServerComponent implements OnInit {
   QuerySubscription: Subscription
   serverId!: number | null;
   isAllowEdit = false;
+  changesSaved = false;
   constructor(private serversService: ServersService
     , private router: Router
     , private route: ActivatedRoute) { }
@@ -28,14 +29,14 @@ export class EditServerComponent implements OnInit {
       console.log(this.route.snapshot.queryParams, this.serverId); this.serverId = 1
     }
     this.route.queryParams.subscribe((Param) => {
-      this.isAllowEdit =Param['allowEdit']==='1';
+      this.isAllowEdit = Param['allowEdit'] === '1';
       if (this.isAllowEdit) {
         this.loadServer();
       }
-      else{
+      else {
         alert("Not allowed to Edit")
       }
-     
+
     });
 
   }
