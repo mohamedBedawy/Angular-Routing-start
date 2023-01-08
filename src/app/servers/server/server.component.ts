@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -18,17 +18,22 @@ export class ServerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.server = this.serversService.getServer(1);
-    this.route.queryParams.subscribe((Param) => {
-      debugger
-      this.isAllowEdit = Param['allowEdit'] === '1';
-      if (this.isAllowEdit) {
-      }
-      else {
-        this.isAllowEdit = false;
-      }
+    // this.server = this.serversService.getServer(1);
+    // this.route.queryParams.subscribe((Param) => {
+    //   debugger
+    //   this.isAllowEdit = Param['allowEdit'] === '1';
+    //   if (this.isAllowEdit) {
+    //   }
+    //   else {
+    //     this.isAllowEdit = false;
+    //   }
 
+    // });
+    debugger
+    this.route.data.subscribe((data:Data) => {
+      this.server = data['server'];
     });
+
   }
 
   onEdit() {
